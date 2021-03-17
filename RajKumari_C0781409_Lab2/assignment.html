@@ -1,0 +1,145 @@
+<html>
+
+<font size="8" color="green">Final test lab</font><br><br>
+
+ 
+
+Number of rows: <input type="text" id="t1" /><br><br>
+
+Number of cols: <input type="text" id="t2" /><br><br>
+
+ 
+
+<button id="b1" onclick="generateTable()">Generate Table</button><br><br>
+
+ 
+
+<button id="b2" onclick="addColumn()">Add Column</button>
+
+ 
+
+<button id="b3" onclick="addRow()">Add Row</button>
+
+ 
+
+<script language="javascript">
+
+ 
+
+    // Generate Table 
+
+    function generateTable() {
+
+ 
+
+        var mytable = document.getElementById("b1");
+
+        var mytablerows = document.getElementById("t1").value;
+
+        var tablecolumns = document.getElementById("t2").value;
+
+ 
+
+        var table = document.createElement('TABLE');
+
+        table.border = '2';
+
+        mytable.style.backgroundColor = "#ffeb3b";
+
+ 
+
+        var tableBody = document.createElement('TBODY');
+
+        table.appendChild(tableBody);
+
+ 
+
+        for (var i = 0; i < mytablerows; i++) {
+
+            var tr = document.createElement('TR');
+
+            tr.style.backgroundColor = "#c0eeff";
+
+            tableBody.appendChild(tr);
+
+ 
+
+            for (var j = 0; j < tablecolumns; j++) {
+
+                var td = document.createElement('TD');
+
+                td.appendChild(document.createTextNode("(" + i + "," + j + ")"));
+
+                td.style.backgroundColor = "#c0eeff";
+
+                tr.appendChild(td);
+
+            }
+
+        }
+
+        mytable.appendChild(table);
+
+ 
+
+    }
+
+ 
+
+    function addRow() {
+
+        var myTable = document.getElementById('b1').getElementsByTagName('tbody')[0];
+
+        var x = myTable.insertRow();
+
+        var e = myTable.rows.length - 1;
+
+        var l = myTable.rows[myTable.rows.length - 2].cells.length;
+
+        for (var c = 0, m = l; c < m; c++) {
+
+            myTable.rows[e].insertCell(c);
+
+            myTable.rows[e].style.backgroundColor = "#c0eeff";
+
+            myTable.rows[e].cells[c].innerHTML = "(" + e + "," + c + ")";
+
+        }
+
+ 
+
+    }
+
+    function addColumn() {
+
+        var myTable = document.getElementById('b1').getElementsByTagName('TBODY')[0];
+
+        var cellLength = myTable.rows[0].cells.length;
+
+        tr = myTable.getElementsByTagName("TR");
+
+        rowNo = tr.length;
+
+        for (i = 0; i < rowNo; i++) {
+
+            var td = document.createElement('TD');
+
+            td.style.backgroundColor = "#c0eeff";
+
+            tr[i].appendChild(td);
+
+            td.appendChild(document.createTextNode("(" + i + "," + cellLength + ")"));
+
+        }
+
+ 
+
+    }
+
+ 
+
+</script>
+
+ 
+
+</html>
